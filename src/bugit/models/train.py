@@ -6,6 +6,7 @@ import lightgbm as lgb
 import pandas as pd
 
 from bugit.data.load import KAMEI_FEATURES, LABEL_COL
+from bugit.paths import MODELS_DIR
 
 DEFAULT_PARAMS: dict = {
     "n_estimators": 300,
@@ -30,12 +31,16 @@ def train_baseline(
 
 def save_model(
     model: lgb.LGBMClassifier,
-    path: str | Path = "models/baseline_lgbm.txt",
+    path: str | Path = MODELS_DIR / "baseline_lgbm.txt",
 ) -> Path:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     model.booster_.save_model(str(path))
     return path
+
+
+def load_model(path: str | Path = MODELS_DIR / "baseline_lgbm.txt") -> lgb.Booster:
+    return lgb.Booster(model_file=str(path))
 
 
 if __name__ == "__main__":

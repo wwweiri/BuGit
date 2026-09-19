@@ -4,6 +4,8 @@ from pathlib import Path
 
 from huggingface_hub import get_token, hf_hub_download
 
+from bugit.paths import RAW_DATA_DIR
+
 HF_REPO_ID = "Weiri/ApacheJIT"
 HF_REPO_TYPE = "dataset"
 
@@ -15,14 +17,14 @@ DEFAULT_FILES: tuple[str, ...] = (
 
 def download_apachejit_file(
     filename: str,
-    dest_dir: str | Path = "../../../data/raw",
+    dest_dir: str | Path = RAW_DATA_DIR,
     repo_id: str = HF_REPO_ID,
     token: str | None = None,
 ) -> Path:
     token = token or get_token()
     if token is None:
         raise RuntimeError(
-            "Could not find the token: not in the argument, not in HF_TOKEN, and not in the cache"
+            "Could not find the token: not in the argument, not in HF_TOKEN, and not in the cache "
             "`hf auth login`. Check `hf auth whoami` to make sure you're actually logged in."
         )
 
@@ -41,7 +43,7 @@ def download_apachejit_file(
 
 def download_apachejit(
     filenames: tuple[str, ...] = DEFAULT_FILES,
-    dest_dir: str | Path = "../../../data/raw",
+    dest_dir: str | Path = RAW_DATA_DIR,
     repo_id: str = HF_REPO_ID,
     token: str | None = None,
 ) -> list[Path]:
