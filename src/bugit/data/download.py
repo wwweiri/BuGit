@@ -15,7 +15,7 @@ DEFAULT_FILES: tuple[str, ...] = (
 
 def download_apachejit_file(
     filename: str,
-    dest_dir: str | Path = "../../data/raw",
+    dest_dir: str | Path = "../../../data/raw",
     repo_id: str = HF_REPO_ID,
     token: str | None = None,
 ) -> Path:
