@@ -12,7 +12,7 @@ DEFAULT_PARAMS: dict = {
     "n_estimators": 300,
     "num_leaves": 31,
     "learning_rate": 0.05,
-    "is_unbalance": True,
+    "is_unbalance": False, #TODO Turn TRUE
     "random_state": 42,
 }
 

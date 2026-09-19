@@ -25,7 +25,7 @@ def evaluate_baseline(
     X_test = test_df[list(features)]
     y_test = test_df[label]
     y_proba = model.predict(X_test)
-    y_pred = (y_proba >= 0.5).astype(int)
+    y_pred = (y_proba >= 0.75).astype(int) #TODO 0.5
 
     metrics = {
         "roc_auc": roc_auc_score(y_test, y_proba),
